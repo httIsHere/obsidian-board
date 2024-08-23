@@ -6,3 +6,108 @@ available in the app when your plugin is enabled.
 If your plugin does not need CSS, delete this file.
 
 */
+.container {
+  /* background-color: #f3f3f3; */
+  margin: 15px;
+}
+.book {
+  border: 1px solid var(--background-modifier-border);
+  padding: 10px;
+}
+
+.book__title {
+  font-weight: 600;
+}
+
+.book__author {
+  color: var(--text-muted);
+}
+
+.date__box, .todo__box {
+  border-radius: 15px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0 10px #ddd;
+}
+
+.date__box h4, .todo__box h4 {
+  margin: 0;
+}
+.todo__box h4 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+.todo__item {
+  padding: 10px;
+  border-radius: 15px;
+  background: linear-gradient(rgb(198, 190, 217),rgba(198, 190, 217, .5) );
+}
+
+.todo__item * {
+  margin: 0;
+}
+
+.todo__tags span {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: #000;
+  background-color: rgba(255,255,255, 0.3);
+  margin-right: 5px;
+  font-size: 12px;
+}
+.todo__title {
+  padding-top: 10px;
+  color: purple;
+}
+.todo__progress {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.todo__progress .progress_box {
+  background-color: rgba(198, 190, 217, .5);
+  width: 80%;
+  height: 20px;
+  border-radius: 5px;
+  padding: 4px;
+}
+.todo__progress .progress_inner[progress-percent] {
+  background-color: purple;
+  width: 0;
+  width: 80%;
+  border-radius: 3px;
+  height: 100%;
+}
+
+.todo__progress .progress_percent {
+  text-align: right;
+  font-weight: bold;
+  color: purple;
+  flex: 1;
+}
+.todo__list {
+  margin-top: 10px;
+}
+.todo__check_item {
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  /* line-height: 16px; */
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.todo__check_item svg {
+  margin-right: 10px;
+  color: purple;
+  cursor: pointer;
+}
+.todo__check_item svg.icon-check {
+  background-color: purple;
+  color: #fff;
+}

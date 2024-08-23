@@ -1,5 +1,5 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
-
+import { ExampleView, VIEW_TYPE_EXAMPLE } from "./view";
 // Remember to rename these classes and interfaces!
 
 interface MyPluginSettings {
@@ -14,12 +14,21 @@ export default class MyPlugin extends Plugin {
 	settings: MyPluginSettings;
 
 	async onload() {
+		const files = this.app.vault.getMarkdownFiles()
 		await this.loadSettings();
+
+		this.registerView(
+      VIEW_TYPE_EXAMPLE,
+      (leaf) => new ExampleView(leaf, files)
+    );
+
+		this.activateView()
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
 			// Called when the user clicks the icon.
 			new Notice('This is a notice!');
+			this.activateView()
 		});
 		// Perform additional things with the ribbon
 		ribbonIconEl.addClass('my-plugin-ribbon-class');
@@ -89,6 +98,19 @@ export default class MyPlugin extends Plugin {
 	async saveSettings() {
 		await this.saveData(this.settings);
 	}
+
+	async activateView() {
+    this.app.workspace.detachLeavesOfType(VIEW_TYPE_EXAMPLE);
+
+    await this.app.workspace.getRightLeaf(false)?.setViewState({
+      type: VIEW_TYPE_EXAMPLE,
+      active: true,
+    });
+
+    this.app.workspace.revealLeaf(
+      this.app.workspace.getLeavesOfType(VIEW_TYPE_EXAMPLE)[0]
+    );
+  }
 }
 
 class SampleModal extends Modal {
